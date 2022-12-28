@@ -11,9 +11,15 @@ import javax.servlet.http.HttpSession;
 import service.MemberService;
 import vo.Member;
 
-@WebServlet("/InsertMemberActionController")
-public class InsertMemberActionController extends HttpServlet {
+@WebServlet("/member/addMember")
+public class AddMember extends HttpServlet {
 	private MemberService memberService;
+	// 회원가입 Form
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/view/member/addMember.jsp").forward(request, response);
+	}
+
+	// 회원가입 Action
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 인코딩
 		request.setCharacterEncoding("UTF-8");
@@ -44,9 +50,9 @@ public class InsertMemberActionController extends HttpServlet {
 		
 		// 회원가입 성공하면
 		if(row == 1) {
-			response.sendRedirect(request.getContextPath() + "/LoginFormController");
+			response.sendRedirect(request.getContextPath() + "/member/login");
 		} else { // 실패하면
-			response.sendRedirect(request.getContextPath() + "/InsertMemberFormController");
+			response.sendRedirect(request.getContextPath() + "/member/addMember");
 		}
 	}
 

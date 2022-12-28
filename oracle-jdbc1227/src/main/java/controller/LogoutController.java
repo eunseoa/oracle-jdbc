@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LogoutController")
+@WebServlet("/member/logout")
 public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath() + "/LoginFormController");
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 }

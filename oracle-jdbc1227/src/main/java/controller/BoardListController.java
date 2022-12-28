@@ -14,7 +14,7 @@ import service.BoardService;
 import vo.Board;
 import vo.Member;
 
-@WebServlet("/BoardListController")
+@WebServlet("/board/boardList")
 public class BoardListController extends HttpServlet {
 	private BoardService boardService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class BoardListController extends HttpServlet {
 		
 		// 로그인이 되어있지않으면
 		if(loginMember == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginFormController");
+			response.sendRedirect(request.getContextPath() + "/member/login");
 			return;
 		}
 		
@@ -42,8 +42,16 @@ public class BoardListController extends HttpServlet {
 			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
 		}
 		
+		// 검색
+		// 검색을 하지 않았을때 모두 풀력하기 위해서 공백 대입
+		String searchTitle = "";
+		if(request.getParameter("searchTitle") != null) {
+			searchTitle = request.getParameter("searchTitle");
+		}
+		System.out.println(searchTitle);
+		
 		this.boardService = new BoardService();
-		ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage);
+		ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, searchTitle);
 		// 마지막 페이지
 		int cnt = boardService.getBoardListCount();
 		int lastPage = cnt / rowPerPage;
@@ -55,8 +63,10 @@ public class BoardListController extends HttpServlet {
 		request.setAttribute("currentPage", currentPage); // view에서 필요
 		request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
 		request.setAttribute("lastPage", lastPage); // view에서 필요
+		request.setAttribute("searchTitle", searchTitle);
 		
-		request.getRequestDispatcher("/WEB-INF/view/boardList.jsp").forward(request, response);
+		// view
+		request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);
 	}
 
 }

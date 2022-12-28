@@ -24,10 +24,27 @@ public class MemberDao {
 	// 로그인
 	public Member loginMember(Connection conn, Member member) throws Exception {
 		Member resultMember = null;
-		String sql = "SELECT member_id memberId, member_name memberName, updatedate, createdate FROM member WHERE member_id = ? AND member_pw = ?";
+		String sql = "SELECT member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, member.getMemberId());
 		stmt.setString(2, member.getMemberPw());
+		
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			resultMember = new Member();
+			resultMember.setMemberId(rs.getString("memberId"));
+			resultMember.setMemberName(rs.getString("memberName"));
+		}
+		
+		return resultMember;
+	}
+	
+	// 회원정보
+	public Member memberOne(Connection conn, Member member) throws Exception {
+		Member resultMember = null;
+		String sql = "SELECT member_id memberId, member_name memberName, updatedate, createdate FROM member WHERE member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
 		
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {

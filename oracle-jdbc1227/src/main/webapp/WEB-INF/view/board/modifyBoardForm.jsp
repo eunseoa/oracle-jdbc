@@ -6,7 +6,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form method="post" action="${pageContext.request.contextPath}/ModifyBoardActionController">
+		<form method="post" action="${pageContext.request.contextPath}/board/modifyBoard">
 			<table>
 				<tr>
 					<td>제목</td>

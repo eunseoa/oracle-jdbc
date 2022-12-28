@@ -63,4 +63,31 @@ public class MemberService {
 		
 		return resultMember;
 	}
+	
+	// memberDao memberOne
+	public Member getMemberOne(Member member) {
+		Member resultMember = null;
+		Connection conn = null;
+		try {
+			this.memberDao = new MemberDao();
+			conn = DBUtil.getConnection();
+			resultMember = memberDao.memberOne(conn, member);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultMember;
+	}
 }

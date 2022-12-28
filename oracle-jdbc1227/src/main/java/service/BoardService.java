@@ -11,7 +11,7 @@ import vo.Board;
 public class BoardService {
 	private BoardDao boardDao;
 	// boardDao selectBoardListByPage
-	public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage) {
+	public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage, String searchTitle) {
 		/*
 			1) connection 생성 <- DBUtil.class
 			2) beginRow, endRow 생성 <- currentPage, rowPerPage를 가공
@@ -25,11 +25,38 @@ public class BoardService {
 			int endRow = beginRow + rowPerPage - 1;
 			
 			this.boardDao = new BoardDao();
-			list = boardDao.selectBoardListByPage(conn, beginRow, endRow);
+			list = boardDao.selectBoardListByPage(conn, beginRow, endRow, searchTitle);
 			conn.commit(); // DBUtil에서 setAutoCommit(false)했음
 		} catch (Exception e) {
 			try {
 				conn.rollback(); // DBUtil에서 setAutoCommit(false)했음
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	// boardDao selectHomeBoardList
+	public ArrayList<Board> getHemoBoardList() {
+		ArrayList<Board> list = null;
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			this.boardDao = new BoardDao();
+			list = boardDao.selectHomeBoardList(conn);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

@@ -13,7 +13,7 @@ import service.BoardService;
 import vo.Board;
 import vo.Member;
 
-@WebServlet("/RemoveBoardController")
+@WebServlet("/board/removeBoard")
 public class RemoveBoardController extends HttpServlet {
 	private BoardService boardService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class RemoveBoardController extends HttpServlet {
 		this.boardService = new BoardService();
 		boardService.getDeleteBoard(board);
 		
-		response.sendRedirect(request.getContextPath() + "/BoardListController");
+		response.sendRedirect(request.getContextPath() + "/board/boardList");
 	}
 
 }

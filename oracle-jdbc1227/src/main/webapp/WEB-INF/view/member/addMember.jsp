@@ -6,23 +6,28 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form method="post" action="${pageContext.request.contextPath}/LoginActionCotroller">
+		<form method="post" action="${pageContext.request.contextPath}/member/addMemberer">
 			<table>
 				<tr>
 					<td>아이디</td>
 					<td>
-						<input type="text" name="id">
+						<input type="text" name="memberId">
+					</td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td>
+						<input type="text" name="memberName">
 					</td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
 					<td>
-						<input type="password" name="pw">
+						<input type="password" name="memberPw">
 					</td>
 				</tr>
 			</table>
-			<button type="submit">로그인</button>
+			<button type="submit">회원가입</button>
 		</form>
-		<a href="${pageContext.request.contextPath}/InsertMemberFormController">회원가입</a>
 	</body>
 </html>

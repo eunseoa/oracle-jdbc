@@ -34,7 +34,9 @@
 				</td>
 			</tr>
 		</table>
-		<a href="${pageContext.request.contextPath}/ModifyBoardFormController?boardNo=${boardOne.boardNo}">수정</a>
-		<a href="${pageContext.request.contextPath}/RemoveBoardController?boardNo=${boardOne.boardNo}">삭제</a>
+		<c:if test="${boardOne.memberId == loginMemberId}">
+			<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${boardOne.boardNo}">수정</a>
+			<a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${boardOne.boardNo}">삭제</a>
+		</c:if>
 	</body>
 </html>
