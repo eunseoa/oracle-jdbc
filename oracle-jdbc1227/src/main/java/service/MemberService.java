@@ -90,4 +90,85 @@ public class MemberService {
 		
 		return resultMember;
 	}
+	
+	// memberDao updateMember
+	public int getUpdateMember(Member member) {
+		int row = 0;
+		Connection conn = null;
+		try {
+			this.memberDao = new MemberDao();
+			conn = DBUtil.getConnection();
+			row = memberDao.updateMember(conn, member);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return row;
+	}
+	
+	// memberDao updateMemberPw
+	public int getUpdateMemberPw(String changePw, String defaultPw, String memberId) {
+		int row = 0;
+		Connection conn = null;
+		try {
+			this.memberDao = new MemberDao();
+			conn = DBUtil.getConnection();
+			row = memberDao.updateMemberPw(conn, changePw, defaultPw, memberId);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return row;
+	}
+	
+	// memberDao deleteMember
+	public int getDeleteMember(Member member) {
+		int row = 0;
+		Connection conn = null;
+		try {
+			this.memberDao = new MemberDao();
+			conn = DBUtil.getConnection();
+			row = memberDao.deleteMember(conn, member);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return row;
+	}
 }

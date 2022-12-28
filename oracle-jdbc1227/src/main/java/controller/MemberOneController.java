@@ -22,6 +22,7 @@ public class MemberOneController extends HttpServlet {
 		// 로그인이 안되어있으면
 		if(loginMember == null) {
 			response.sendRedirect(request.getContextPath() + "/home");
+			return;
 		}
 		
 		// 로그인되어있으면

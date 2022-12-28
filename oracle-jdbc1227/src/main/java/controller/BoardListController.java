@@ -63,7 +63,7 @@ public class BoardListController extends HttpServlet {
 		request.setAttribute("currentPage", currentPage); // view에서 필요
 		request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
 		request.setAttribute("lastPage", lastPage); // view에서 필요
-		request.setAttribute("searchTitle", searchTitle);
+		request.setAttribute("searchTitle", searchTitle); // view에서 필요
 		
 		// view
 		request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);

@@ -10,17 +10,18 @@
 			$(document).ready(function() {
 				$('#rowPerPage').change(function() {
 					$('#pageForm').submit();
-					alert('change');
 				})
 			});
 		</script>
 	</head>
 	<body>
-		<span>${loginMember.memberName}님, 반값습니다</span>
+		<span>${loginMember.memberId}(${loginMember.memberName})님, 반값습니다</span>
 		<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
 		<h1>BOARD LIST</h1>
+		<a href="${pageContext.request.contextPath}/home">홈</a>
 		<form id="pageForm" method="get" action="${pageContext.request.contextPath}/board/boardList">
-			<input type="text" name="searchTitle">
+			<input type="hidden" name="currentPage" value="${currentPage}">
+			<input type="text" name="searchTitle" value="${searchTitle}">
 			<button type="submit">검색</button>
 			<select name="rowPerPage" id="rowPerPage">
 				<c:if test="${rowPerPage == 10 }">
@@ -45,12 +46,14 @@
 			<tr>
 				<th>boardNo</th>
 				<th>boardTitle</th>
+				<th>memberId</th>
 				<th>createdate</th>
 			</tr>
 			<c:forEach var="b" items="${boardList}">
 				<tr>
 					<td>${b.boardNo}</td>
 					<td><a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
+					<td>${b.memberId}</td>
 					<td>${b.createdate}</td>
 				</tr>
 			</c:forEach>

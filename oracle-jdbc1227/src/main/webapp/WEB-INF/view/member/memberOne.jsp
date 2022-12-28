@@ -13,8 +13,8 @@
 		</div>
 		<div>
 			<a href="${pageContext.request.contextPath}/member/modifyMember">정보 수정</a>
+			<a href="${pageContext.request.contextPath}/member/modifyMemberPw">비밀번호 수정</a>
 			<a href="${pageContext.request.contextPath}/member/removeMember">회원 탈퇴</a>
-			<!-- 자바스립트로 동적처리 -->
 		</div>
 	</body>
 </html>

@@ -28,6 +28,13 @@ public class AddBoardController extends HttpServlet {
 		// 로그인 정보 저장
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)(session.getAttribute("loginMember"));
+		
+		// 로그인이 안되어있으면
+		if(loginMember == null) {
+			response.sendRedirect(request.getContextPath() + "/member/login");
+			return;
+		}
+		
 		// 등록할 board 내용		
 		String title = request.getParameter("title");
 		String content = request.getParameter("title");

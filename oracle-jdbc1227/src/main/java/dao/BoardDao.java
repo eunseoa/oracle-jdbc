@@ -12,9 +12,9 @@ public class BoardDao {
 	// home에서 보여줄 board 리스트
 	public ArrayList<Board> selectHomeBoardList(Connection conn) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>();
-		String sql = "SELECT board_no boardNo, board_title boardTitle, createdate "
-					+" FROM (SELECT rownum rnum, board_no, board_title, createdate "
-					+"		FROM (SELECT board_no, board_title, createdate "
+		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, createdate "
+					+" FROM (SELECT rownum rnum, board_no, board_title, member_id, createdate "
+					+"		FROM (SELECT board_no, board_title, member_id, createdate "
 					+"				FROM board ORDER BY TO_NUMBER(board_no) DESC)) "
 					+" WHERE rnum BETWEEN 1 AND 10";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class BoardDao {
 			Board b = new Board();
 			b.setBoardNo(rs.getInt("boardNo"));
 			b.setBoardTitle(rs.getString("boardTitle"));
+			b.setMemberId(rs.getString("memberId"));
 			b.setCreatedate(rs.getString("createdate"));
 			list.add(b);
 		}
@@ -34,9 +35,9 @@ public class BoardDao {
 	// board 리스트 출력
 	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String searchTitle) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>();
-		String sql = "SELECT board_no boardNo, board_title boardTitle, createdate "
-					+" FROM (SELECT rownum rnum, board_no, board_title, createdate "
-					+"		FROM (SELECT board_no, board_title, createdate "
+		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, createdate "
+					+" FROM (SELECT rownum rnum, board_no, board_title, member_id, createdate "
+					+"		FROM (SELECT board_no, board_title, member_id, createdate "
 					+"				FROM board ORDER BY TO_NUMBER(board_no) DESC)) "
 					+" WHERE rnum BETWEEN ? AND ? AND board_title LIKE ?"; // WHERE rnum >=? AND rnum <=?;
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -49,6 +50,7 @@ public class BoardDao {
 			Board b = new Board();
 			b.setBoardNo(rs.getInt("boardNo"));
 			b.setBoardTitle(rs.getString("boardTitle"));
+			b.setMemberId(rs.getString("memberId"));
 			b.setCreatedate(rs.getString("createdate"));
 			list.add(b);
 		}
