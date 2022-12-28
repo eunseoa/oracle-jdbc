@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<form method="post" action="${pageContext.request.contextPath}/board/modifyBoard">
@@ -37,5 +38,10 @@
 			</table>
 			<button type="submit">수정</button>
 		</form>
+		<script>
+			$(document).ready(function() {
+				
+			})
+		</script>
 	</body>
 </html>

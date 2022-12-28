@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<c:if test="${loginMember == null}">
@@ -13,17 +14,19 @@
 					<tr>
 						<td>아이디</td>
 						<td>
-							<input type="text" name="id">
+							<input type="text" name="id" id="id">
+							<span id="idMsg"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
 						<td>
-							<input type="password" name="pw">
+							<input type="password" name="pw" id="pw">
+							<span id="pwMsg"></span>
 						</td>
 					</tr>
 				</table>
-				<button type="submit">로그인</button>
+				<button type="submit" id="loginBtn">로그인</button>
 			</form>
 			<a href="${pageContext.request.contextPath}/member/addMember">회원가입</a>
 		</c:if>
@@ -56,5 +59,39 @@
 				</table>
 			</div>
 		</c:if>
+		<script>
+			// body 태그를 다 읽고 
+			$(document).ready(function() {
+				
+				// 아이디 유효성 검사
+				$('#id').blur(function() {
+					if($('#id').val() == '') {
+						$('#idMsg').text('아이디를 입력해주세요');
+						$('#id').focus();
+					} else {
+						$('#idMsg').text('');
+						$('#pw').focus();
+					}
+				});
+
+				$('#pw').blur(function() {
+					if($('#pw').val() == '') {
+						$('#pwMsg').text('비밀번호를 입력해주세요');
+						$('#pw').focus();
+					} else {
+						$('#pwMsg').text('');
+						$('#pw').focus();
+					}
+				});
+				
+				// 페이지 로딩되자마자 버튼을 누름 방지
+				$('#loginBtn').click(function() {
+					if($('#id').val() == '' || $('#pw').val() == '') {
+						alert('내용을 입력해주세요');
+						return;
+					}
+				})
+			})
+		</script>
 	</body>
 </html>

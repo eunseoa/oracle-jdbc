@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,10 @@ public class ModifyMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/member/login");
 			return;
 		}
+		
+		// 수정 실패시
+		String msg = request.getParameter("msg");
+		request.setAttribute("msg", msg);
 		
 		// 로그인되어있으면
 		request.getRequestDispatcher("/WEB-INF/view/member/modifymember.jsp").forward(request, response);
@@ -60,13 +65,19 @@ public class ModifyMemberController extends HttpServlet {
 		
 		// Model
 		this.memberService = new MemberService();
-		memberService.getUpdateMember(member);
+		int row = memberService.getUpdateMember(member);
 		
 		// view에서 현재 이름을 보여줌
 		request.setAttribute("loginMember", loginMember);
 		
-		response.sendRedirect(request.getContextPath() + "/member/memberOne");
-		
+		if(row == 1) {
+			System.out.println("수정 성공");
+			response.sendRedirect(request.getContextPath() + "/member/memberOne");
+		} else {
+			System.out.println("수정 실패");
+			String msg = URLEncoder.encode("틀린비밀번호 입니다", "utf-8");
+			response.sendRedirect(request.getContextPath() + "/member/modifyMember?msg=" + msg);
+		}
 	}
 
 }

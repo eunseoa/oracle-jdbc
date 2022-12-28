@@ -61,7 +61,7 @@ public class BoardDao {
 	// list 페이징을 위한 데이터 총 갯수
 	public int boardListCount(Connection conn) throws Exception {
 		int cnt = 0;
-		String sql = "SELECT COUNT(*) cnt FROM board";
+		String sql = "SELECT COUNT(*) cnt FROM board WHERE ";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		ResultSet rs = stmt.executeQuery();

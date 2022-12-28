@@ -12,7 +12,7 @@ import service.MemberService;
 import vo.Member;
 
 @WebServlet("/member/addMember")
-public class AddMember extends HttpServlet {
+public class AddMemberController extends HttpServlet {
 	private MemberService memberService;
 	// 회원가입 Form
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +30,15 @@ public class AddMember extends HttpServlet {
 		
 		// 로그인시 접근금지
 		if(loginMember != null) {
-			response.sendRedirect(request.getContextPath() + "/BoardListController");
+			response.sendRedirect(request.getContextPath() + "/board/boardList");
+			return;
+		}
+		
+		// 값을 입력하지 않았을때
+		if(request.getParameter("memberId") == null || request.getParameter("memberId").equals("")
+			|| request.getParameter("memberPw") == null || request.getParameter("memberPw").equals("")
+			|| request.getParameter("memberName") == null || request.getParameter("memberName").equals("")) {
+			response.sendRedirect(request.getContextPath() + "/member/addMember");
 			return;
 		}
 		
@@ -50,8 +58,11 @@ public class AddMember extends HttpServlet {
 		
 		// 회원가입 성공하면
 		if(row == 1) {
+			System.out.println("회원가입 성공");
 			response.sendRedirect(request.getContextPath() + "/member/login");
+			return;
 		} else { // 실패하면
+			System.out.println("회원가입 실패");
 			response.sendRedirect(request.getContextPath() + "/member/addMember");
 		}
 	}

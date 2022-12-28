@@ -35,6 +35,13 @@ public class AddBoardController extends HttpServlet {
 			return;
 		}
 		
+		// 내용을 입력하지 않으면
+		if(request.getParameter("title") == null || request.getParameter("title").equals("")
+			|| request.getParameter("title") == null || request.getParameter("title").equals("")) {
+			response.sendRedirect(request.getContextPath() + "/board/addBoard");
+			return;
+		}
+		
 		// 등록할 board 내용		
 		String title = request.getParameter("title");
 		String content = request.getParameter("title");
@@ -48,12 +55,14 @@ public class AddBoardController extends HttpServlet {
 		this.boardService = new BoardService();
 		int row = boardService.getInsertBoard(board);
 		
+		// 디버깅
 		if(row == 1) {
 			System.out.println("board 등록 성공");
-			response.sendRedirect(request.getContextPath() + "/board/boardList");
 		} else {
 			System.out.println("board 등록 실패");
 		}
+		
+		response.sendRedirect(request.getContextPath() + "/board/boardList");
 	}
 
 }
