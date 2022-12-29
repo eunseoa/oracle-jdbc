@@ -24,6 +24,7 @@ public class RomoveMemberController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 인코딩
 		request.setCharacterEncoding("UTF-8");
+		System.out.println("모달");
 		
 		// 로그인 정보 저장
 		HttpSession session = request.getSession();

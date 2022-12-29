@@ -35,16 +35,9 @@ public class AddBoardController extends HttpServlet {
 			return;
 		}
 		
-		// 내용을 입력하지 않으면
-		if(request.getParameter("title") == null || request.getParameter("title").equals("")
-			|| request.getParameter("title") == null || request.getParameter("title").equals("")) {
-			response.sendRedirect(request.getContextPath() + "/board/addBoard");
-			return;
-		}
-		
 		// 등록할 board 내용		
 		String title = request.getParameter("title");
-		String content = request.getParameter("title");
+		String content = request.getParameter("content");
 		
 		// 바인딩
 		Board board = new Board();

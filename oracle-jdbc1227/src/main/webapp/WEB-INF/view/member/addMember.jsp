@@ -4,6 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link href="${pageContext.request.contextPath}/favicon.png" rel="icon">
+		<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	</head>
 	<body>
