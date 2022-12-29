@@ -24,7 +24,6 @@ public class RomoveMemberController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 인코딩
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("모달");
 		
 		// 로그인 정보 저장
 		HttpSession session = request.getSession();
@@ -47,9 +46,16 @@ public class RomoveMemberController extends HttpServlet {
 		
 		// Model
 		this.memberService = new MemberService();
-		memberService.getDeleteMember(member);
+		int row = memberService.getDeleteMember(member);
 		
-		response.sendRedirect(request.getContextPath() + "/member/login");
+		if(row == 1) {
+			System.out.println("탈퇴 성공");
+		} else {
+			System.out.println("탈퇴 실패");
+		}
+		
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 }

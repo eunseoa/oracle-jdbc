@@ -45,50 +45,49 @@
 							<div class="card-body p-3">
 								<table class="table">
 									<tr>
-										<td>아이디</td>
-										<td>${loginMember.memberId}</td>
+										<td class="align-middle text-center text-sm">아이디</td>
+										<td class="align-middle text-center text-sm text-bold">${loginMember.memberId}</td>
 									</tr>
 									<tr>
-										<td>이름</td>
-										<td>${loginMember.memberName}</td>
+										<td class="align-middle text-center text-sm">이름</td>
+										<td class="align-middle text-center text-sm text-bold">${loginMember.memberName}</td>
 									</tr>
 									<tr>
-										<td>가입 일자</td>
-										<td>${loginMember.createdate}</td>
+										<td class="align-middle text-center text-sm">가입 일자</td>
+										<td class="align-middle text-center text-sm text-bold">${loginMember.createdate}</td>
 									</tr>
 								</table>
 								<div>
-	            					<a href="${pageContext.request.contextPath}/member/modifyMember" class="btn" style="background-color: #8CBDED;">정보 수정</a>
-									<a href="${pageContext.request.contextPath}/member/modifyMemberPw" class="btn btn-primary">비밀번호 수정</a>
+	            					<a href="${pageContext.request.contextPath}/member/modifyMember" class="btn bg-gradient-primary">정보 수정</a>
+									<a href="${pageContext.request.contextPath}/member/modifyMemberPw" class="btn bg-gradient-primary">비밀번호 수정</a>
 									<div class="col-md-4">
-										<button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#exampleModalMessage">회원탈퇴</button>
-	
-										<div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">탈퇴하시겠습니까?</h5>
-														<button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">×</span>
-														</button>
-													</div>
-													<div class="modal-body">
-														<form action="${pageContext.request.contextPath}/member/removeMember" method="post" id="pageForm">
+										<button type="button" class="btn btn-outline-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModalMessage">회원탈퇴</button>
+										<form action="${pageContext.request.contextPath}/member/removeMember" method="post" id="pageForm">
+											<div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">탈퇴하시겠습니까?</h5>
+															<button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">×</span>
+															</button>
+														</div>
+														<div class="modal-body">
 															<div class="form-group">
 																<label for="recipient-name" class="col-form-label">비밀번호</label> 
-																<input type="password" class="form-control" id="memberPw">
+																<input type="password" name="memberPw" id="memberPw" class="form-control">
 																<label for="recipient-name" class="col-form-label">비밀번호 확인</label> 
 																<input type="password" class="form-control" id="pw2">
 															</div>
-														</form>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">탈퇴</button>
-														<button type="submit" class="btn bg-gradient-primary">취소</button>
+														</div>
+														<div class="modal-footer">
+															<button type="submit" class="btn bg-gradient-secondary" data-bs-dismiss="modal" aria-label="Close">탈퇴</button>
+															<button type="submit" class="btn bg-gradient-primary">취소</button>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
+										</form>
 									</div>
 								</div>
 							</div>

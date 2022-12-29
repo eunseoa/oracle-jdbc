@@ -22,6 +22,21 @@ public class MemberDao {
 		return row;
 	}
 	
+	// 아이디 중복 확인
+	public boolean memberIdCheck(Connection conn, Member member) throws Exception {
+		boolean check = false;
+		String sql = "SELECT member_id FROM member WHERE member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			check = true;
+		}
+		
+		return check;
+	}
+	
 	// 로그인
 	public Member loginMember(Connection conn, Member member) throws Exception {
 		Member resultMember = null;
@@ -43,7 +58,7 @@ public class MemberDao {
 	// 회원정보
 	public Member memberOne(Connection conn, Member member) throws Exception {
 		Member resultMember = null;
-		String sql = "SELECT member_id memberId, member_name memberName, updatedate, createdate FROM member WHERE member_id = ?";
+		String sql = "SELECT member_id memberId, member_name memberName, updatedate, SUBSTR(createdate, 1, 9) createdate FROM member WHERE member_id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, member.getMemberId());
 		

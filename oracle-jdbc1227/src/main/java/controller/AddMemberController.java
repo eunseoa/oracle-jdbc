@@ -53,7 +53,16 @@ public class AddMemberController extends HttpServlet {
 		member.setMemberPw(memberPw);
 		member.setMemberName(memberName);
 		
+		// Model
 		this.memberService = new MemberService();
+		// 아이디 중복 검사
+		if(memberService.getMemberIdCheck(member)) {
+			response.sendRedirect(request.getContextPath() + "/member/login");
+			System.out.println("아이디 중복");
+			return;
+		}
+		
+		// 아이디가 중복되지않으면
 		int row = memberService.getInsertMember(member);
 		
 		// 회원가입 성공하면

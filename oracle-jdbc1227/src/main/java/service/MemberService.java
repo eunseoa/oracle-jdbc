@@ -36,6 +36,32 @@ public class MemberService {
 		return row;
 	}
 	
+	// memberDao memberIdCheck
+	public boolean getMemberIdCheck(Member member) {
+		boolean check = false;
+		Connection conn = null;
+		try {
+			this.memberDao = new MemberDao();
+			conn = DBUtil.getConnection();
+			check = memberDao.memberIdCheck(conn, member);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return check;
+	}
 	
 	// memberDao loginMember
 	public Member getLoginMember(Member member) {

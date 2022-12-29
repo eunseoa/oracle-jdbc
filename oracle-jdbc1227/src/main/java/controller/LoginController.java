@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,11 +46,15 @@ public class LoginController extends HttpServlet {
 		member.setMemberId(id);
 		member.setMemberPw(pw);
 		
+		// Model
 		this.memberService = new MemberService();
 		Member resultMember = memberService.getLoginMember(member);
 		
 		// 로그인 실패
 		if(resultMember == null) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('인증번호가 틀립니다'); </script>");
+			out.flush();
 			response.sendRedirect(request.getContextPath() + "/member/login");
 			return;
 		}

@@ -16,19 +16,19 @@
 			}
 			
 			th:nth-child(1) {
-				width: 70px;
+				width: 40px;
 			}
 			
 			th:nth-child(2) {
-				width: 200px;
+				width: 150px;
 			}
 			
 			th:nth-child(3) {
-				width: 100px;
+				width: 70px;
 			}
 			
 			th:nth-child(4) {
-				width: 100px;
+				width: 70px;
 			}
 		</style>
 		<script>

@@ -22,27 +22,27 @@
 							</div>
 							<div class="card-body p-3">
 								<form action="${pageContext.request.contextPath}/member/modifyMember" method="post" id="pageForm">
-									<table >
+									<table class="table">
 										<tr>
-											<td>이름</td>
-											<td>
-												<input type="text" name="memberName" value="${loginMember.memberName}" id="name">
+											<td class="align-middle text-center text-sm">이름</td>
+											<td class="align-middle text-center text-sm text-bold">
+												<input type="text" name="memberName" value="${loginMember.memberName}" id="name" class="form-control">
 											</td>
 										</tr>
 										<tr>
-											<td>비밀번호</td>
-											<td>
-												<input type="password" name="memberPw" id="pw1">
-											</td>
+											<td class="align-middle text-center text-sm">비밀번호</td>
+											<td class="align-middle text-center text-sm text-bold">
+												<input type="password" name="memberPw" id="pw1" class="form-control">
+											 </td>
 										</tr>
 										<tr>
-											<td>비밀번호 확인</td>
-											<td>
-												<input type="password" name="pwCheck" id="pw2">
+											<td class="align-middle text-center text-sm">가입 일자</td>
+											<td class="align-middle text-center text-sm text-bold">
+												<input type="password" name="pwCheck" id="pw2" class="form-control">
 											</td>
 										</tr>
 									</table>
-									<button type="button" id="updateBtn">수정</button>
+									<button type="button" id="updateBtn" class="btn btn-primary btn-lg w-100">수정</button>
 								</form>
 							</div>
 						</div>

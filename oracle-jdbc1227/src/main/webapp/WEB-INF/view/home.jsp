@@ -10,6 +10,27 @@
 		<script src="https://kit.fontawesome.com/42d5adcbca.js"></script>
 		<link id="pagestyle" href="${pageContext.request.contextPath}/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<style>
+			td {
+				height: 60px;
+			}
+			
+			th:nth-child(1) {
+				width: 70px;
+			}
+			
+			th:nth-child(2) {
+				width: 200px;
+			}
+			
+			th:nth-child(3) {
+				width: 100px;
+			}
+			
+			th:nth-child(4) {
+				width: 100px;
+			}
+		</style>
 	</head>
 	<body class="g-sidenav-show bg-gray-100">
 		<c:if test="${loginMember == null}">
@@ -82,63 +103,82 @@
 			<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 				<div class="container-fluid py-4">
 					<div class="row">
-						<div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-							<div class="card">
-								<div class="card-header pb-0">
-									<div class="row">
-										<div class="col-lg-6 col-7">
-											<p class="mb-0">
-												<i class="fa fa-check text-info" aria-hidden="true"></i> <span class="font-weight-bold ms-1">최근 게시판</span>
-											</p>
+						<div class="col-lg-8 mb-lg-0 mb-4">
+							<div class="row">
+								<div class="card">
+									<div class="card-header pb-0">
+										<div class="row">
+											<div class="col-lg-6 col-7">
+												<p class="mb-0">
+													<i class="fa fa-check text-info" aria-hidden="true"></i> <span class="font-weight-bold ms-1">최근 게시판</span>
+												</p>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="card-body px-0 pb-2">
-									<div class="table-responsive">
-										<table class="table align-items-center mb-0">
-											<thead>
-												<tr>
-													<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-													<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="b" items="${boardList}">
+									<div class="card-body px-0 pb-2">
+										<div class="table-responsive">
+											<table class="table align-items-center mb-0 text-center">
+												<thead>
 													<tr>
-														<td>
-															<p class="text-xs font-weight-bold mb-0">${b.boardNo}</p>
-														</td>
-														<td>
-															<div class="d-flex px-2 py-1">
-																<div class="d-flex flex-column justify-content-center">
-																	<h6 class="mb-0 text-sm">
-																		<a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a>
-																	</h6>
-																</div>
-															</div>
-														</td>
-														<td class="align-middle text-center text-sm"><span>${b.memberId}</span></td>
-														<td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${b.createdate}</span></td>
+														<th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">no</th>
+														<th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">Title</th>
+														<th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">Id</th>
+														<th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">date</th>
 													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
+												</thead>
+												<tbody>
+													<c:forEach var="b" items="${boardList}">
+														<tr>
+															<td>
+																<p class="text-xs font-weight-bold mb-0">${b.boardNo}</p>
+															</td>
+															<td>
+																<div class="d-flex px-2 py-1">
+																	<div class="d-flex flex-column justify-content-center">
+																		<h6 class="mb-0 text-sm">
+																			<a href="${pageContext.request.contextPath}/board/boardOne?boardNo=${b.boardNo}">${b.boardTitle}</a>
+																		</h6>
+																	</div>
+																</div>
+															</td>
+															<td class="align-middle text-center text-sm"><span>${b.memberId}</span></td>
+															<td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${b.createdate}</span></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="card h-100">
-								<div class="card-header pb-0">
-									<h6>Orders overview</h6>
-									<p class="text-sm">
-										<i class="fa fa-arrow-up text-success" aria-hidden="true"></i> <span class="font-weight-bold">24%</span> this month
-									</p>
-									<div>아이디 : ${loginMember.memberId}</div>
-										<div>이름 : ${loginMember.memberName}</div>
-										<div>
-											<a href="${pageContext.request.contextPath}/member/memberOne">내정보</a>
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-md-12 mb-4">
+									<div class="card h-100">
+										<div class="card-header pb-0 p-3">
+											<h6 class="text-sm">${loginMember.memberId}(${loginMember.memberName})님, 반갑습니다</h6>
+											<a href="${pageContext.request.contextPath}/member/memberOne" class="btn btn-outline-secondary">My page</a>
+										</div>
+										<div class="card-body pt-2">
+										
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="card mt-1">
+										<div class="card-header pb-0 p-3 mt-3 position-relative">
+											<a href="https://www.oracle.com/" class="d-block"><img src="${pageContext.request.contextPath}/assets/img/oracle.jpg" class="img-fluid border-radius-lg"></a>
+										</div>
+										<div class="card-body pt-2">
+											<span class="text-gradient text-primary text-uppercase text-xs font-weight-bold my-2">Database</span> 
+											<a href="javascript:;" class="card-title h5 d-block text-darker">oracle</a>
+											<div class="author align-items-center">
+												<div class="name ps-3">
+													<span>오라클을 이용한 테이블 CRUD</span>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
