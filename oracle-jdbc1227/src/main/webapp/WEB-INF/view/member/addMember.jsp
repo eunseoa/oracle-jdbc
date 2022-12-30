@@ -45,7 +45,7 @@
 									</div>
 									<div class="card-footer text-center pt-0 px-lg-2 px-1">
 										<p class="mb-4 text-sm mx-auto">
-											<a href="${pageContext.request.contextPath}/home" class="text-info text-gradient font-weight-bold">Sign in</a>
+											Already have an account? <a href="${pageContext.request.contextPath}/home" class="text-info text-gradient font-weight-bold">Sign in</a>
 										</p>
 									</div>
 								</div>

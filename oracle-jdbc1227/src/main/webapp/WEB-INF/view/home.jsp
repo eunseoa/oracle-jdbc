@@ -53,7 +53,7 @@
 											</div>
 											<label>Password</label>
 											<div class="mb-3">
-												<input type="password"  name="pw" id="pw" class="form-control" placeholder="Password">
+												<input type="password"  name="pw" id="pw" class="form-control" placeholder="Password" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
 											</div>
 											<div>
 												<label id="msg"></label>
@@ -236,7 +236,7 @@
 				// 페이지 로딩되자마자 버튼을 누름 방지
 				$('#loginBtn').click(function() {
 					if($('#id').val() == '' || $('#pw').val() == '') {
-						alert('내용을 입력해주세요');
+						alert('정보를 모두 입력해주세요');
 						return;
 					}
 				})

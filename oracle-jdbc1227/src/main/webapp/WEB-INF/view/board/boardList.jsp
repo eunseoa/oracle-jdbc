@@ -117,14 +117,43 @@
 										</tbody>
 									</table>
 									<div>
-										<a href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=1&searchTitle=${searchTitle}">처음</a>
-										<c:if test="${currentPage > 1}">
-											<a href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}&searchTitle=${searchTitle}">이전</a>
-										</c:if>
-										<c:if test="${currentPage < lastPage}">
-											<a href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}&searchTitle=${searchTitle}">다음</a>
-										</c:if>
-										<a href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${lastPage}&searchTitle=${searchTitle}">마지막</a>
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<c:if test="${prev == true}">
+													<li class="page-item">
+														<a class="page-link" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${startPage - 1}&searchTitle=${searchTitle}">
+															<i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+														</a>
+													</li>
+												</c:if>
+												<c:if test="${prev == false}">
+													<li class="page-item disabled">
+														<a class="page-link">
+															<i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+														</a>
+													</li>
+												</c:if>
+												<c:forEach var="b" begin="${startPage}" end="${endPage}" step="1">
+													<li class="page-item">
+														<a class="page-link" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${b}&searchTitle=${searchTitle}">${b}</a>
+													</li>
+												</c:forEach>
+												<c:if test="${next == true}">
+													<li class="page-item">
+														<a class="page-link" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${endPage + 1}&searchTitle=${searchTitle}">
+															<i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+														</a>
+													</li>
+												</c:if>
+												<c:if test="${next == false}">
+													<li class="page-item disabled">
+														<a class="page-link">
+															<i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+														</a>
+													</li>
+												</c:if>
+											</ul>
+										</nav>
 									</div>
 								</div>
 							</div>

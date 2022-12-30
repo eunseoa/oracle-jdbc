@@ -52,10 +52,10 @@ public class LoginController extends HttpServlet {
 		
 		// 로그인 실패
 		if(resultMember == null) {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('인증번호가 틀립니다'); </script>");
+			out.println("<script>alert('아이디나 비밀번호를 확인해주세요'); history.back(); </script>");
 			out.flush();
-			response.sendRedirect(request.getContextPath() + "/member/login");
 			return;
 		}
 		

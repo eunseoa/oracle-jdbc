@@ -73,13 +73,13 @@ public class BoardService {
 	}
 	
 	// 데이터 총 개수 count
-	public int getBoardListCount() {
+	public int getBoardListCount(String searchTitle) {
 		int cnt = 0;
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
 			this.boardDao = new BoardDao();
-			cnt = boardDao.boardListCount(conn);
+			cnt = boardDao.boardListCount(conn, searchTitle);
 			conn.commit();
 		} catch (Exception e) {
 			try {

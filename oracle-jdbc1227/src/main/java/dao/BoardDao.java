@@ -12,7 +12,7 @@ public class BoardDao {
 	// home에서 보여줄 board 리스트
 	public ArrayList<Board> selectHomeBoardList(Connection conn) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>();
-		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, createdate "
+		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, SUBSTR(createdate, 1, 9) createdate "
 					+" FROM (SELECT rownum rnum, board_no, board_title, member_id, createdate "
 					+"		FROM (SELECT board_no, board_title, member_id, createdate "
 					+"				FROM board ORDER BY TO_NUMBER(board_no) DESC)) "
@@ -35,7 +35,7 @@ public class BoardDao {
 	// board 리스트 출력
 	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String searchTitle) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>();
-		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, createdate "
+		String sql = "SELECT board_no boardNo, board_title boardTitle, member_id memberId, SUBSTR(createdate, 1, 9) createdate "
 					+" FROM (SELECT rownum rnum, board_no, board_title, member_id, createdate "
 					+"		FROM (SELECT board_no, board_title, member_id, createdate "
 					+"				FROM board "
@@ -61,10 +61,11 @@ public class BoardDao {
 	}
 	
 	// list 페이징을 위한 데이터 총 갯수
-	public int boardListCount(Connection conn) throws Exception {
+	public int boardListCount(Connection conn, String searchTitle) throws Exception {
 		int cnt = 0;
-		String sql = "SELECT COUNT(*) cnt FROM board";
+		String sql = "SELECT COUNT(*) cnt FROM board WHERE board_title LIKE ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, "%" + searchTitle + "%");
 		
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
@@ -77,7 +78,7 @@ public class BoardDao {
 	// board 상세보기
 	public Board selectBoardOne(Connection conn, int boardNo) throws Exception {
 		Board board = null;
-		String sql = "SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, updatedate, createdate FROM board WHERE board_no = ?";
+		String sql = "SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, updatedate, SUBSTR(createdate, 1, 9) createdate FROM board WHERE board_no = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, boardNo);
 		
