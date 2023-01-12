@@ -14,16 +14,13 @@
 			table {
 				border-collapse: separate;
 				border-spacing: 0 1rem;
-				width: 1300px;
 			}
 			
-			input {
-				height: 50px;
-			}
-			
-			textarea {
-				height: 400px;
-				resize: none;
+			td {
+				width: 100px;
+				white-space: pre;
+				word-wrap: break-word;
+				word-break: break-all;
 			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -52,7 +49,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td style="height: 400px;">${boardOne.boardContent}</td>
+												<td style="height: 400px;"><span>${boardOne.boardContent}</span></td>
 											</tr>
 										</table>
 										<div style="float: right;">

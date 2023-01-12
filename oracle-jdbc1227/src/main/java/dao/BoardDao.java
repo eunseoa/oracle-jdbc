@@ -78,7 +78,7 @@ public class BoardDao {
 	// board 상세보기
 	public Board selectBoardOne(Connection conn, int boardNo) throws Exception {
 		Board board = null;
-		String sql = "SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, updatedate, SUBSTR(createdate, 1, 9) createdate FROM board WHERE board_no = ?";
+		String sql = "SELECT board_no boardNo, board_title boardTitle, board_content boardContent, member_id memberId, updatedate, createdate FROM board WHERE board_no = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, boardNo);
 		
